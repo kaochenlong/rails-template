@@ -1,3 +1,8 @@
+require 'fileutils'
+require_relative 'utils'
+
+source_paths.unshift(File.dirname(__FILE__))
+
 gem_group :development, :test do
   gem 'foreman', '~> 0.86.0'
   gem 'hirb-unicode', '~> 0.0.5'
@@ -17,10 +22,7 @@ after_bundle do
     RUBY
   end
 
-  file 'Procfile', <<-CODE
-web: bin/rails server -p 3000
-webpacker: bin/webpack-dev-server
-  CODE
+  copy_procfile
 
   route "root 'pages#home'"
 
@@ -28,9 +30,7 @@ webpacker: bin/webpack-dev-server
 
   generate(:controller, "pages")
 
-  file 'app/views/pages/home.html.erb', <<-CODE
-<h1>Hello, Rails :)</h1>
-  CODE
+  copy_file 'app/views/pages/home.html.erb'
 
   generate "rspec:install"
   remove_dir "test"

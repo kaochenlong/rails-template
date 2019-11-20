@@ -1,5 +1,4 @@
 require 'fileutils'
-require_relative 'utils'
 
 source_paths.unshift(File.dirname(__FILE__))
 
@@ -40,3 +39,7 @@ after_bundle do
   git commit: "-a -m 'Initial commit'"
 end
 
+def copy_procfile
+  copy_file 'Procfile.dev'
+  copy_file '.foreman'
+end

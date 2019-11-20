@@ -1,5 +1,20 @@
 # Rails Application Templates
 
+## 新增專案可省略選項
+
+- `--skip-test-unit` 
+- `--skip-sprockets`
+- `--skip-turbolinks`
+- `--skip-action-cable`
+- `--skip-active-storage`
+- `--skip-action-text`
+- `--skip-action-mailbox`
+- `--skip-action-mailer`
+
+範例：
+
+    $ rails new my_project -m TEMPLATE_PATH --skip-turbolinks --skip-active-storage
+
 ### `basic` 基本版
 
 - 安裝 gem 

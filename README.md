@@ -15,8 +15,9 @@
 
     $ rails new my_project -m TEMPLATE_PATH --skip-turbolinks --skip-active-storage
 
-### `basic` 基本版
+### `basic` 基本版 
 
+- 連結 <https://raw.githubusercontent.com/kaochenlong/rails-template/master/basic.rb>
 - 安裝 gem 
   - rspec-rails
   - factory-bot-rails

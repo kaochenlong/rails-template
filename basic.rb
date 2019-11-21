@@ -7,7 +7,7 @@ def set_source_path
   if __FILE__ =~ %r{\Ahttps?://}
     tempdir = Dir.mktmpdir("rails-template-")
     source_paths.unshift(tempdir)
-    at_exit { remove_entry(tempdir) }
+    at_exit { remove_dir(tempdir) }
     git clone: "--quiet #{SOURCE_REPO} #{tempdir}"
   else
     source_paths.unshift(File.dirname(__FILE__))

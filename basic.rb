@@ -1,6 +1,25 @@
 require 'fileutils'
+require "tmpdir"
 
-source_paths.unshift(File.dirname(__FILE__))
+SOURCE_REPO = "https://github.com/kaochenlong/rails-template.git"
+
+def set_source_path
+  if __FILE__ =~ %r{\Ahttps?://}
+    tempdir = Dir.mktmpdir("rails-template-")
+    source_paths.unshift(tempdir)
+    at_exit { remove_entry(tempdir) }
+    git clone: "--quiet #{SOURCE_REPO} #{tempdir}"
+  else
+    source_paths.unshift(File.dirname(__FILE__))
+  end
+end
+
+def copy_procfile
+  copy_file 'Procfile.dev'
+  copy_file '.foreman'
+end
+
+set_source_path
 
 gem_group :development, :test do
   gem 'foreman', '~> 0.86.0'
@@ -39,7 +58,3 @@ after_bundle do
   git commit: "-a -m 'Initial commit'"
 end
 
-def copy_procfile
-  copy_file 'Procfile.dev'
-  copy_file '.foreman'
-end

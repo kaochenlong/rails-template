@@ -46,7 +46,7 @@ after_bundle do
 
   run "spring stop"
 
-  generate(:controller, "pages")
+  generate :controller, "pages"
 
   copy_file 'app/views/pages/home.html.erb'
 
@@ -58,3 +58,4 @@ after_bundle do
   git commit: "-a -m 'Initial commit'"
 end
 
+puts "Everything seems good, Awesome!"

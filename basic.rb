@@ -14,9 +14,11 @@ def set_source_path
   end
 end
 
-def copy_procfile
+def copy_files
   copy_file 'Procfile.dev'
   copy_file '.foreman'
+  copy_file 'Dockerfile'
+  copy_file '.dockerignore'
 end
 
 set_source_path
@@ -40,7 +42,7 @@ after_bundle do
     RUBY
   end
 
-  copy_procfile
+  copy_files
 
   route "root 'pages#home'"
 

@@ -26,7 +26,7 @@ gem_group :development, :test do
   gem 'hirb-unicode', '~> 0.0.5'
   gem 'rspec-rails', '~> 3.9'
   gem 'factory_bot_rails', '~> 5.1', '>= 5.1.1'
-  gem 'faker', '~> 2.9'
+  gem 'faker', '~> 2.10'
   gem 'pry-rails', '~> 0.3.9'
 end
 

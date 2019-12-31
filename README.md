@@ -19,13 +19,24 @@
 
 - 連結 <https://raw.githubusercontent.com/kaochenlong/rails-template/master/basic.rb>
 - 安裝 gem 
-  - rspec-rails
-  - factory-bot-rails
-  - faker
-  - hirb-unicode
+  - [rspec-rails](https://github.com/rspec/rspec-rails)
+  - [factory-bot-rails](https://github.com/thoughtbot/factory_bot_rails)
+  - [faker](https://github.com/faker-ruby/faker)
+  - [hirb-unicode](https://rubygems.org/gems/hirb-unicode)
+  - [foreman](https://github.com/ddollar/foreman)
 
 - 建立 
   - `PagesController` 及 `index.html.erb`
   - 設定首頁到 `pages#index`
 
+### `tailwind` 版 
+
+- 連結 <https://raw.githubusercontent.com/kaochenlong/rails-template/master/tailwind.rb>
+- 安裝 Gem
+  - 同 `basic` 基本版
+  - [figaro](https://github.com/laserlemon/figaro)
+- 安裝 [Tailwind CSS](https://tailwindcss.com)
+- 把 `app/javascript` 目錄換成 `app/frontend`
+
 by eddie@5xruby.tw
+

@@ -34,8 +34,8 @@
 - 連結 <https://raw.githubusercontent.com/kaochenlong/rails-template/master/tailwind.rb>
 - 安裝 Gem
   - 同 `basic` 基本版
-  - [figaro](https://github.com/laserlemon/figaro)
 - 安裝 [Tailwind CSS](https://tailwindcss.com)
+- 安裝 [Purgecss](https://www.purgecss.com/) 移除不必要的 CSS 定義
 - 把 `app/javascript` 目錄換成 `app/frontend`
 
 by eddie@5xruby.tw

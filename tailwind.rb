@@ -1,11 +1,7 @@
-require 'fileutils'
+require "fileutils"
 require "tmpdir"
 
 SOURCE_REPO = "https://github.com/kaochenlong/rails-template.git"
-
-def yarn(package)
-  run "yarn add #{package}"
-end
 
 def set_source_path
   if __FILE__ =~ %r{\Ahttps?://}
@@ -19,13 +15,11 @@ def set_source_path
 end
 
 def copy_procfile
-  copy_file 'Procfile.dev'
-  copy_file '.foreman'
+  copy_file "Procfile.dev"
+  copy_file ".foreman"
 end
 
 set_source_path
-
-gem 'figaro', '~> 1.1', '>= 1.1.1'
 
 gem_group :development, :test do
   gem 'foreman', '~> 0.86.0'
@@ -53,35 +47,37 @@ after_bundle do
 
   generate :controller, "pages"
 
-  run "bundle exec figaro install"
-
-  copy_file 'app/views/pages/home.html.erb'
+  copy_file "app/views/pages/home.html.erb"
 
   generate "rspec:install"
+
   remove_dir "test"
 
   # frontend packages
-  yarn "tailwindcss"
+  run "yarn add tailwindcss"
+  run "yarn add @fullhuman/postcss-purgecss --dev"
 
   inject_into_file 'app/javascript/packs/application.js', after: "// const imagePath = (name) => images(name, true)" do 
     "\n\nimport 'scripts'\nimport 'styles'\n"
   end
 
-  inject_into_file 'postcss.config.js', after: "require('postcss-import')," do 
-    "\n    require('tailwindcss'),\n    require('autoprefixer'),"
-  end
+  # inject_into_file 'postcss.config.js', after: "require('postcss-import')," do 
+  #   "\n    require('tailwindcss'),\n    require('autoprefixer'),"
+  # end
 
-  copy_file 'app/javascript/scripts/index.js'
-  copy_file 'app/javascript/scripts/application.js'
-  copy_file 'app/javascript/styles/index.js'
-  copy_file 'app/javascript/styles/application.scss'
+  copy_file "postcss.config.js", force: true
+
+  copy_file "app/javascript/scripts/index.js"
+  copy_file "app/javascript/scripts/application.js"
+  copy_file "app/javascript/styles/index.js"
+  copy_file "app/javascript/styles/application.scss"
 
   # images
   gsub_file "app/javascript/packs/application.js", "// const images", "const images"
   gsub_file "app/javascript/packs/application.js", "// const imagePath", "const imagePath"
-  copy_file 'app/javascript/images/.keep'
+  copy_file "app/javascript/images/.keep"
 
-  # move app/javascript to app/frontend
+  # rename app/javascript folder to app/frontend
   gsub_file "config/webpacker.yml", /source_path\: app\/javascript/, "source_path: app\/frontend"
   run "mv app/javascript app/frontend"
 

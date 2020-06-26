@@ -18,6 +18,8 @@ if (process.env.RAILS_ENV === "production") {
     require('@fullhuman/postcss-purgecss')({
       content: [
         './app/**/*.html.erb',
+        './app/**/*.html.slim',
+        './app/**/*.html.haml',
         './app/**/*.rb',
         './app/**/*.js',
         './app/**/*.vue',
@@ -30,4 +32,3 @@ if (process.env.RAILS_ENV === "production") {
 }
 
 module.exports = environment
-
